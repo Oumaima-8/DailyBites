@@ -1,38 +1,43 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+BrowserRouter,
+Routes,
+Route
+} from "react-router-dom";
 
-import Home from "./pages/Home";
+
+import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/Order-confirmation";
 
 
-function App() {
+function App(){
 
-  return (
 
-    <BrowserRouter>
+return(
 
-      <Routes>
+<BrowserRouter>
 
-        <Route 
-          path="/" 
-          element={<Home />} 
-        />
+<Routes>
 
-        <Route 
-          path="/cart" 
-          element={<Cart />} 
-        />
+<Route path="/" element={<Menu/>}/>
 
-        <Route 
-          path="/checkout" 
-          element={<Checkout />} 
-        />
+<Route path="/cart" element={<Cart/>}/>
 
-      </Routes>
+<Route path="/checkout" element={<Checkout/>}/>
 
-    </BrowserRouter>
+<Route 
+path="/confirmation"
+element={<OrderConfirmation/>}
+/>
 
-  );
+
+</Routes>
+
+
+</BrowserRouter>
+
+)
 
 }
 
