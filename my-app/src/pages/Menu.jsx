@@ -29,7 +29,7 @@ function Menu(){
 return(
 
 <div className="
-max-w-md
+max-w-sm
 mx-auto
 bg-[#F8F4ED]
 min-h-screen

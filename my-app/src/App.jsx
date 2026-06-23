@@ -9,12 +9,14 @@ import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/Order-confirmation";
-
+import {CartProvider} from "./context/CartContext";
 
 function App(){
 
 
 return(
+
+<CartProvider>
 
 <BrowserRouter>
 
@@ -37,9 +39,11 @@ element={<OrderConfirmation/>}
 
 </BrowserRouter>
 
-)
+</CartProvider>
+
+
+	);
 
 }
-
 
 export default App;

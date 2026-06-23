@@ -1,10 +1,36 @@
 import {motion} from "framer-motion";
+import {useCart} from "../context/CartContext";
+import {useNavigate} from "react-router-dom";
+import BackButton from "../components/BackButton";
+
 
 
 function Cart(){
 
 
+const {
+cart,
+increase,
+decrease
+}=useCart();
+
+
+const navigate=useNavigate();
+
+
+
+const total = cart.reduce(
+
+(sum,item)=>
+
+sum + item.price * item.quantity
+
+,0);
+
+
+
 return(
+
 
 <motion.div
 
@@ -18,8 +44,9 @@ x:0,
 opacity:1
 }}
 
+
 className="
-max-w-md
+max-w-sm
 mx-auto
 bg-[#F8F4ED]
 min-h-screen
@@ -27,7 +54,7 @@ p-4
 "
 
 >
-
+<BackButton/>
 
 <h1 className="
 font-title
@@ -40,29 +67,63 @@ Bestelling
 
 
 
-<div className="
+{
+
+
+cart.length === 0 ?
+
+
+<p className="mt-5">
+
+Je bestelling is leeg
+
+</p>
+
+
+
+:
+
+
+cart.map(item=>(
+
+
+<div
+
+key={item.id}
+
+className="
 bg-[#9FAFB3]
 p-3
 mt-5
 rounded
-">
+"
+
+
+>
 
 
 <h3>
-Dürüm Kip Menu
+
+{item.name}
+
 </h3>
 
 
+
 <p>
-Groente:
-sla, tomaat
+
+{item.description}
+
 </p>
 
 
+
 <p>
-Saus:
-knoflook, sambal
+
+€{item.price}
+
 </p>
+
 
 
 <div className="
@@ -72,30 +133,33 @@ mt-3
 ">
 
 
-<button>
+<button
+
+onClick={()=>decrease(item.id)}
+
+>
+
 -
+
 </button>
+
 
 
 <span>
-1
+
+{item.quantity}
+
 </span>
 
 
-<button>
+
+<button
+
+onClick={()=>increase(item.id)}
+
+>
+
 +
-</button>
-
-
-</div>
-
-
-<button className="
-mt-3
-underline
-">
-
-Aanpassen
 
 </button>
 
@@ -104,16 +168,50 @@ Aanpassen
 
 
 
-<button className="
+</div>
+
+
+))
+
+
+}
+
+
+
+
+
+<button
+
+disabled={cart.length === 0}
+
+onClick={()=>navigate("/checkout")}
+
+
+className={`
 bg-[#D97706]
 text-white
 w-full
 p-3
 rounded-xl
 mt-5
-">
 
-Checkout €15,00
+
+${
+cart.length === 0
+
+?
+
+"bg-gray-300"
+
+:
+
+"bg-[#D97706]"
+} `}
+
+
+>
+
+Checkout €{total.toFixed(2)}
 
 </button>
 

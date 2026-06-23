@@ -1,8 +1,10 @@
 import {motion} from "framer-motion";
+import {useCart} from "../context/CartContext";
 
 
 function MenuItem({item}){
 
+const {addToCart} = useCart();
 
 return(
 
@@ -66,6 +68,8 @@ text-[#2A2A2A]
 
 
 <motion.button
+
+onClick={()=>addToCart(item)}
 
 whileTap={{
 scale:.9
