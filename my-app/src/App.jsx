@@ -4,12 +4,6 @@ Routes,
 Route
 } from "react-router-dom";
 
-root.render(
-    <BrowserRouter basename="/DailyBites">
-        <App />
-    </BrowserRouter>
-);
-
 
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
@@ -22,33 +16,18 @@ function App(){
 
 return(
 
-<CartProvider>
-
-<BrowserRouter>
-
-<Routes>
-
-<Route path="/" element={<Menu/>}/>
-
-<Route path="/cart" element={<Cart/>}/>
-
-<Route path="/checkout" element={<Checkout/>}/>
-
-<Route 
-path="/confirmation"
-element={<OrderConfirmation/>}
-/>
-
-
-</Routes>
-
-
-</BrowserRouter>
-
-</CartProvider>
-
-
-	);
+    <CartProvider>
+        <Routes>
+            <Route path="/" element={<Menu/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+            <Route path="/checkout" element={<Checkout/>}/>
+            <Route 
+            path="/confirmation"
+            element={<OrderConfirmation/>}
+            />
+        </Routes>
+    </CartProvider>
+    ); 
 
 }
 

@@ -4,12 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
-
-    base: "./DailyBites/",
-
-plugins:[
-react(),
-tailwindcss()
-]
+    plugins: [react(), tailwindcss()],
+    base: "./"
 
 })
