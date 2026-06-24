@@ -77,7 +77,7 @@ scale:.9
 className="
 bg-white
 rounded-full
-w-6
+w-10
 h-6
 text-[#D97706]
 font-bold
