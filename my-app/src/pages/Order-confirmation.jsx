@@ -19,9 +19,12 @@ opacity:1
 }}
 
 className="
-min-h-screen
 max-w-sm
+mx-auto
+min-h-screen
+w-full
 bg-[#F8F4ED]
+p-4
 flex
 flex-col
 items-center
@@ -31,7 +34,6 @@ text-center
 
 
 >
-
 
 <div className="
 text-6xl
