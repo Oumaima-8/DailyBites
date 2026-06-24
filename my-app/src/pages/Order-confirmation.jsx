@@ -20,6 +20,7 @@ opacity:1
 
 className="
 min-h-screen
+max-w-sm
 bg-[#F8F4ED]
 flex
 flex-col

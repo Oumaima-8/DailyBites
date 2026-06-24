@@ -4,6 +4,12 @@ Routes,
 Route
 } from "react-router-dom";
 
+root.render(
+    <BrowserRouter basename="/DailyBites">
+        <App />
+    </BrowserRouter>
+);
+
 
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
