@@ -1,20 +1,60 @@
 import {motion} from "framer-motion";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {supabase} from "../supabaseClient";
 
 
-const categories=[
-"Populair",
-"Kapsalon",
-"Dürüm",
-"Burgers",
-"Loaded Fries"
-];
+function CategoryTabs({setCategory, setCategoryName}){
 
 
-function CategoryTabs(){
+const [categories,setCategories] = useState([]);
+
+const [active,setActive] = useState(null);
 
 
-const [active,setActive]=useState("Populair");
+
+useEffect(()=>{
+
+
+async function fetchCategories(){
+
+
+const {data,error} = await supabase
+.from("Categories")
+.select("*")
+.order('sort_order', {ascending:true});
+
+
+if(error){
+
+console.log(error);
+
+}
+
+else{
+
+setCategories(data);
+
+if(data.length > 0){
+
+setActive(data[0].id);
+
+setCategory(data[0].id);
+
+setCategoryName(data[0].name);
+
+}
+
+}
+
+
+}
+
+
+fetchCategories();
+
+
+},[]);
+
 
 
 return(
@@ -30,12 +70,25 @@ bg-[#F8F4ED]
 
 
 {
+
 categories.map(cat=>(
 
 
 <button
 
-onClick={()=>setActive(cat)}
+key={cat.id}
+
+
+onClick={()=>{
+
+setActive(cat.id);
+
+setCategory(cat.id);
+
+setCategoryName(cat.name);
+
+}}
+
 
 className="
 relative
@@ -49,7 +102,9 @@ text-sm
 >
 
 
-{active===cat &&
+
+{
+active === cat.id &&
 
 <motion.div
 
@@ -67,14 +122,16 @@ rounded-full
 }
 
 
+
 <span className="
 relative
 z-10
 ">
 
-{cat}
+{cat.name}
 
 </span>
+
 
 
 </button>
@@ -85,11 +142,13 @@ z-10
 }
 
 
+
 </div>
 
 
 )
 
 }
+
 
 export default CategoryTabs;

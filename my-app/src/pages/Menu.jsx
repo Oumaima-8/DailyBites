@@ -1,29 +1,68 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../supabaseClient";
+
 import Header from "../components/Header";
 import CategoryTabs from "../components/CategoryTabs";
 import MenuItem from "../components/MenuItem";
 import CartButton from "../components/CartButton";
 
 
-const products=[
+function Menu(){
 
-{
-name:"Kapsalon Kalfsvlees",
-description:"Friet met kalfsdöner, kaas en saus",
-price:12.50
-},
+const [products, setProducts] = useState([]);
+const [category,setCategory] = useState(null);
+const [categoryName,setCategoryName] = useState(null);
 
 
-{
-name:"Kapsalon Kipdöner",
-description:"Friet met kipdöner en saus",
-price:12.50
+useEffect(()=>{
+
+
+async function fetchMenu(){
+
+
+let query = supabase
+.from("Menu Items")
+.select("*")
+.eq("available", true);
+
+
+
+if(category){
+
+query = query.eq(
+"category_id",
+category
+);
+
 }
 
 
-];
+
+const {data,error} = await query;
 
 
-function Menu(){
+
+if(error){
+
+console.log(error);
+
+}
+
+else{
+
+setProducts(data);
+
+}
+
+
+}
+
+
+fetchMenu();
+
+
+}, [category]);
+
 
 
 return(
@@ -40,8 +79,7 @@ relative
 <Header/>
 
 
-<CategoryTabs/>
-
+<CategoryTabs setCategory={setCategory} setCategoryName={setCategoryName}/>
 
 
 <section className="p-3">
@@ -53,19 +91,22 @@ text-xl
 mb-3
 ">
 
-Kapsalon
+{categoryName || "Kapsalon"}
 
 </h2>
 
 
 {
+
 products.map((item)=>(
 
 <MenuItem
-key={item.name}
-item={item}
-/>
 
+key={item.id}
+
+item={item}
+
+/>
 
 ))
 
@@ -73,7 +114,6 @@ item={item}
 
 
 </section>
-
 
 
 <CartButton/>

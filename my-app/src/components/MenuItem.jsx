@@ -58,8 +58,7 @@ text-[#2A2A2A]
 
 <strong>
 
-€{item.price}
-
+€{Number(item.price).toFixed(2)}
 </strong>
 
 
