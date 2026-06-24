@@ -1,7 +1,4 @@
-# DailyBites
-Mobile Website for restaurant food ordering.
-
-# Project README (Frontend – Menu & Cart App)
+# Project DailyBites
 
 ## Overview
 
