@@ -15,10 +15,10 @@ Optional header with logo on all pages
 
 ## Tech Stack
 React (Vite)
-JavaScript (ES6+)
+JavaScript 
 Supabase (database & API)
-CSS (custom styling)
-React Router (if implemented)
+Tailwind CSS 
+React Router 
 
 ## Installation
 1. Clone the repository
