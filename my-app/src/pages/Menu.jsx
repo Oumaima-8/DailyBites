@@ -91,7 +91,7 @@ text-xl
 mb-3
 ">
 
-{categoryName || "Kapsalon"}
+{categoryName || "Menu"}
 
 </h2>
 

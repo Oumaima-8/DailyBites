@@ -28,7 +28,7 @@ bg-[#9FAFB3]
 p-3
 flex
 justify-between
-
+py-2
 "
 
 
